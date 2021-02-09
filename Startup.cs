@@ -32,8 +32,6 @@ namespace basic_crud_api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "basic_crud_api v1"));
             }
 
             app.UseHttpsRedirection();

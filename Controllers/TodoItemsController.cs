@@ -28,6 +28,8 @@ namespace basic_crud_api.Controllers
         }
 
         // GET: api/TodoItems/5
+        //If no item matches the requested ID, the method returns a 404 status NotFound error code.
+        //Otherwise, the method returns 200 with a JSON response body. Returning item results in an HTTP 200 response.
         [HttpGet("{id}")]
         public async Task<ActionResult<TodoItem>> GetTodoItem(long id)
         {
@@ -43,6 +45,7 @@ namespace basic_crud_api.Controllers
 
         // PUT: api/TodoItems/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // This requires the whole item to be sent in the request
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTodoItem(long id, TodoItem todoItem)
         {
