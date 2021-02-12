@@ -21,7 +21,7 @@ namespace basic_crud_api
         public void ConfigureServices(IServiceCollection services)
         {
             // Registering in memory database in the Dependency injection container
-            services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase("TodoList"));
+            services.AddDbContext<TodoContext>(options => options.UseNpgsql(Configuration.GetConnectionString("BloggingContext")));
 
             services.AddControllers();
         }

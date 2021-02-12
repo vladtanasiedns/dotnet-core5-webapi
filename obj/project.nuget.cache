@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "FwjgishdQ0fZtEXFFRfjWlhWosr3JLjMM42GFKwBVwC8r1EAiJW2QZcW0v3uYH9mTSP5Bnl0qblI/W2n51J7Og==",
+  "dgSpecHash": "+fKDVW5i+oin0DX8fpa8UuLAnJxmJdRHjTr7uxfKhg7DCx5vvd49E1D9DFrq7ukWvfYz1w+9pPI6XSshUGTY9Q==",
   "success": true,
   "projectFilePath": "D:\\Projects Vlad\\c#\\basic-crud-api\\basic-crud-api.csproj",
   "expectedPackageFiles": [
@@ -26,6 +26,7 @@
     "C:\\Users\\tanas\\.nuget\\packages\\microsoft.entityframeworkcore.inmemory\\5.0.3\\microsoft.entityframeworkcore.inmemory.5.0.3.nupkg.sha512",
     "C:\\Users\\tanas\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\5.0.3\\microsoft.entityframeworkcore.relational.5.0.3.nupkg.sha512",
     "C:\\Users\\tanas\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\5.0.3\\microsoft.entityframeworkcore.sqlserver.5.0.3.nupkg.sha512",
+    "C:\\Users\\tanas\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\5.0.3\\microsoft.entityframeworkcore.tools.5.0.3.nupkg.sha512",
     "C:\\Users\\tanas\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\tanas\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\5.0.0\\microsoft.extensions.caching.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\tanas\\.nuget\\packages\\microsoft.extensions.caching.memory\\5.0.0\\microsoft.extensions.caching.memory.5.0.0.nupkg.sha512",
@@ -56,6 +57,8 @@
     "C:\\Users\\tanas\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\tanas\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\tanas\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\tanas\\.nuget\\packages\\npgsql\\5.0.2\\npgsql.5.0.2.nupkg.sha512",
+    "C:\\Users\\tanas\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\5.0.2\\npgsql.entityframeworkcore.postgresql.5.0.2.nupkg.sha512",
     "C:\\Users\\tanas\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\tanas\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
     "C:\\Users\\tanas\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
