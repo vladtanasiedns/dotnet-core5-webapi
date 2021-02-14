@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace TodoApi.Models
 {
     // Dependent entity class
@@ -9,6 +11,7 @@ namespace TodoApi.Models
         // Foreign key pointing to the project this TodoItem belongs to
         public int ProjectId { get; set; }
         // Inverse navigation property
+        [ForeignKey("Id")]
         public Project Project { get; set; }
     }
 }

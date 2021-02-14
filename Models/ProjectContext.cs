@@ -13,7 +13,9 @@ namespace TodoApi.Models
         {
         modelBuilder.Entity<TodoItem>()
             .HasOne(p => p.Project)
-            .WithMany(b => b.TodoItems);
+            .WithMany(b => b.TodoItems)
+            .HasForeignKey(t => t.Id)
+            .HasConstraintName("ProjectId");
         }
 
         public DbSet<Project> Projects { get; set; }
