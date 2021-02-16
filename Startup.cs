@@ -20,6 +20,7 @@ namespace basic_crud_api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             // Registering connection to database trough context
             services.AddDbContext<TodoContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<ProjectContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));

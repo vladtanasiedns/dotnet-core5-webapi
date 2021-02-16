@@ -9,10 +9,11 @@ using TodoApi.Models;
 
 namespace basic_crud_api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]")] // The route the controller will respond to [controller] is replaced by the controller name
     [ApiController]
     public class TodoItemsController : ControllerBase
     {
+        // The context which forms a connection to the database so we can query
         private readonly TodoContext _context;
 
         public TodoItemsController(TodoContext context)
@@ -20,7 +21,7 @@ namespace basic_crud_api.Controllers
             _context = context;
         }
 
-        // GET: api/TodoItems
+        // GET: api/TodoItems request method annotation
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoItems()
         {
@@ -31,6 +32,7 @@ namespace basic_crud_api.Controllers
         //If no item matches the requested ID, the method returns a 404 status NotFound error code.
         //Otherwise, the method returns 200 with a JSON response body. Returning item results in an HTTP 200 response.
         [HttpGet("{id}")]
+        // ActionResult returns permits more than one type to be returned from the method
         public async Task<ActionResult<TodoItem>> GetTodoItem(long id)
         {
             var todoItem = await _context.TodoItems.FindAsync(id);
