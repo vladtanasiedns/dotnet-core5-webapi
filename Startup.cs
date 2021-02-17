@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using TodoApi.Models;
+using TodoApi.Middleware;
 
 namespace basic_crud_api
 {
@@ -35,6 +36,8 @@ namespace basic_crud_api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSampleMiddleware();
 
             app.UseHttpsRedirection();
 
