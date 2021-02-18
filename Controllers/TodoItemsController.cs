@@ -14,9 +14,9 @@ namespace basic_crud_api.Controllers
     public class TodoItemsController : ControllerBase
     {
         // The context which forms a connection to the database so we can query
-        private readonly TodoContext _context;
+        private readonly ProjectContext _context;
 
-        public TodoItemsController(TodoContext context)
+        public TodoItemsController(ProjectContext context)
         {
             _context = context;
         }
@@ -31,6 +31,7 @@ namespace basic_crud_api.Controllers
         // GET: api/TodoItems/5
         //If no item matches the requested ID, the method returns a 404 status NotFound error code.
         //Otherwise, the method returns 200 with a JSON response body. Returning item results in an HTTP 200 response.
+        //"{id:guid}" sets a constraint to only receive a guid as the id parameter
         [HttpGet("{id}")]
         // ActionResult returns permits more than one type to be returned from the method
         public async Task<ActionResult<TodoItem>> GetTodoItem(long id)
