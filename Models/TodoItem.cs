@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace TodoApi.Models
 {
@@ -10,7 +11,7 @@ namespace TodoApi.Models
         public bool IsComplete { get; set; }
         // Foreign key pointing to the project this TodoItem belongs to
         public int ProjectId { get; set; }
-        // Inverse navigation property
+        // Navigation propery referencing the project model
         [ForeignKey("Id")]
         public Project Project { get; set; }
     }
