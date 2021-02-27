@@ -25,8 +25,8 @@ namespace basic_crud_api.Controllers
         public async Task<ActionResult<IEnumerable<Project>>> GetProjects()
         {
             // return await _context.Projects.ToListAsync();
-            var projects = await _context.Projects.Include(p => p.TodoItems).ToListAsync();
-            return projects;
+            var projects = _context.Projects.Include(p => p.TodoItems).AsNoTracking();
+            return await projects.ToListAsync();
         }
 
         // GET: api/TodoItems/5
