@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TodoApi.Models;
+using TodoApi.Dtos;
 
 namespace basic_crud_api.Controllers
 {
@@ -23,9 +24,18 @@ namespace basic_crud_api.Controllers
 
         // GET: api/TodoItems request method annotation
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoItems()
+        public async Task<ActionResult<IEnumerable<TodoItemDto>>> GetTodoItems()
         {
-            return await _context.TodoItems.Include(p => p.Project).ToListAsync();
+            var result = await _context.TodoItems.ToListAsync();
+            var dtoList = new List<TodoItemDto>();
+
+            foreach (var item in result)
+            {
+
+                dtoList.Add(new TodoItemDto(item.Id ,item.Name, item.ProjectId, item.IsComplete));
+            }
+
+            return dtoList;
         }
 
         // GET: api/TodoItems/5
@@ -36,7 +46,7 @@ namespace basic_crud_api.Controllers
         // ActionResult returns permits more than one type to be returned from the method
         public async Task<ActionResult<TodoItem>> GetTodoItem(long id)
         {
-            var todoItem = await _context.TodoItems.FindAsync(id);
+            var todoItem = await _context.TodoItems.Include(p => p.Project).FirstOrDefaultAsync(i => i.Id == id);
 
             if (todoItem == null)
             {
