@@ -4,10 +4,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TodoApi.Models
 {
+    [Table("projects")]
     public class Project
     {
         // [Key]
-        public long Id { get; set; }
+        [Column("id")]
+        public int Id { get; set; }
+        [Column("name")]
         public string Name { get; set; }
         // Navigation propery
         // [InverseProperty("Project")]
