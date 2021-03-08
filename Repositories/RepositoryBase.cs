@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TodoApi.Models;
 
@@ -18,14 +16,14 @@ namespace TodoApi.Repositories
             this.repository = repositoryContext;
         }
 
-        public async Task<ActionResult<IEnumerable<T>>> GetAll()
+        public IQueryable<T> GetAll()
         {
-            return await repository.Set<T>().ToListAsync();
+            return repository.Set<T>().AsNoTracking();
         }
 
-        public async Task<ActionResult<T>> GetById(long id, Expression<Func<T, bool>> expression)
+        public T GetById(int id, Expression<Func<T, bool>> expression)
         {
-            var todoItem = await repository.Set<T>().FirstOrDefaultAsync(expression);
+            var todoItem = repository.Set<T>().FirstOrDefault(expression);
 
             if (todoItem == null)
             {
@@ -35,40 +33,38 @@ namespace TodoApi.Repositories
             return todoItem;
         }
 
-        public async Task<int> Post(T t)
+        public int Post(T t)
         {
             repository.Set<T>().Add(t);
-            return await repository.SaveChangesAsync();
+            return repository.SaveChanges();
         }
 
-        public async Task<IActionResult> Put(long id, T t)
+        public int Put(int id, T t)
         {
             repository.Entry(t).State = EntityState.Modified;
 
             try
             {
-                await repository.SaveChangesAsync();
+                repository.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
                throw;
             }
 
-            return null;
+            return 0;
         }
 
-        public async Task<IActionResult> Delete(long id)
+        public int Delete(int id)
         {
-            var todoItem = await repository.Set<T>().FindAsync(id);
+            var todoItem = repository.Set<T>().Find(id);
             if (todoItem == null)
             {
-                return null;
+                return 0;
             }
 
             repository.Set<T>().Remove(todoItem);
-            await repository.SaveChangesAsync();
-
-            return null;
+            return repository.SaveChanges();
         }
     }
 }
