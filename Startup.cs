@@ -30,6 +30,7 @@ namespace basic_crud_api
             services.AddControllers();
             // Registering our repository for dependency injection into our controller
             services.AddScoped<RepositoryBase<TodoItem>, TodoRepository>();
+            services.AddScoped<RepositoryBase<Project>, ProjectRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

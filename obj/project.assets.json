@@ -7515,19 +7515,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\tanas\\.nuget\\packages\\": {}
+    "/home/user1/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects Vlad\\c#\\basic-crud-api\\basic-crud-api.csproj",
+      "projectUniqueName": "/home/user1/Desktop/Office/demos-tests/dotnet-core5-webapi/basic-crud-api.csproj",
       "projectName": "basic-crud-api",
-      "projectPath": "D:\\Projects Vlad\\c#\\basic-crud-api\\basic-crud-api.csproj",
-      "packagesPath": "C:\\Users\\tanas\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects Vlad\\c#\\basic-crud-api\\obj\\",
+      "projectPath": "/home/user1/Desktop/Office/demos-tests/dotnet-core5-webapi/basic-crud-api.csproj",
+      "packagesPath": "/home/user1/.nuget/packages/",
+      "outputPath": "/home/user1/Desktop/Office/demos-tests/dotnet-core5-webapi/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\tanas\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/home/user1/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -7606,7 +7606,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.201/RuntimeIdentifierGraph.json"
       }
     }
   }

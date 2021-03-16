@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TodoApi.Models;
+using TodoApi.Repositories;
 
 namespace basic_crud_api.Controllers
 {
@@ -13,11 +14,11 @@ namespace basic_crud_api.Controllers
     [ApiController]
     public class ProjectsController : ControllerBase
     {
-        private readonly ProjectContext _context;
+        private readonly RepositoryBase<Project> repository;
 
-        public ProjectsController(ProjectContext context)
+        public ProjectsController(RepositoryBase<Project> repository)
         {
-            _context = context;
+            this.repository = repository;
         }
 
         // GET: api/TodoItems
@@ -25,88 +26,88 @@ namespace basic_crud_api.Controllers
         public async Task<ActionResult<IEnumerable<Project>>> GetProjects()
         {
             // return await _context.Projects.ToListAsync();
-            var projects = _context.Projects.Include(p => p.TodoItems).AsNoTracking();
-            return await projects.ToListAsync();
+            var projects = await repository.GetAll().ToListAsync();
+            return projects;
         }
 
-        // GET: api/TodoItems/5
-        //If no item matches the requested ID, the method returns a 404 status NotFound error code.
-        //Otherwise, the method returns 200 with a JSON response body. Returning item results in an HTTP 200 response.
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Project>> GetProject(long id)
-        {
-            var project = await _context.Projects.FindAsync(id);
+        // // GET: api/TodoItems/5
+        // //If no item matches the requested ID, the method returns a 404 status NotFound error code.
+        // //Otherwise, the method returns 200 with a JSON response body. Returning item results in an HTTP 200 response.
+        // [HttpGet("{id}")]
+        // public async Task<ActionResult<Project>> GetProject(long id)
+        // {
+        //     var project = await _context.Projects.FindAsync(id);
 
-            if (project == null)
-            {
-                return NotFound();
-            }
+        //     if (project == null)
+        //     {
+        //         return NotFound();
+        //     }
 
-            return project;
-        }
+        //     return project;
+        // }
 
-        // PUT: api/TodoItems/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        // This requires the whole item to be sent in the request
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutProject(long id, Project project)
-        {
-            if (id != project.Id)
-            {
-                return BadRequest();
-            }
+        // // PUT: api/TodoItems/5
+        // // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // // This requires the whole item to be sent in the request
+        // [HttpPut("{id}")]
+        // public async Task<IActionResult> PutProject(long id, Project project)
+        // {
+        //     if (id != project.Id)
+        //     {
+        //         return BadRequest();
+        //     }
 
-            _context.Entry(project).State = EntityState.Modified;
+        //     _context.Entry(project).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TodoItemExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //     try
+        //     {
+        //         await _context.SaveChangesAsync();
+        //     }
+        //     catch (DbUpdateConcurrencyException)
+        //     {
+        //         if (!TodoItemExists(id))
+        //         {
+        //             return NotFound();
+        //         }
+        //         else
+        //         {
+        //             throw;
+        //         }
+        //     }
 
-            return NoContent();
-        }
+        //     return NoContent();
+        // }
 
-        // POST: api/TodoItems
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Project>> PostProject(Project project)
-        {
-            _context.Projects.Add(project);
-            await _context.SaveChangesAsync();
+        // // POST: api/TodoItems
+        // // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // [HttpPost]
+        // public async Task<ActionResult<Project>> PostProject(Project project)
+        // {
+        //     _context.Projects.Add(project);
+        //     await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetProject), new { id = project.Id }, project);
-        }
+        //     return CreatedAtAction(nameof(GetProject), new { id = project.Id }, project);
+        // }
 
-        // DELETE: api/TodoItems/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProject(long id)
-        {
-            var project = await _context.Projects.FindAsync(id);
-            if (project == null)
-            {
-                return NotFound();
-            }
+        // // DELETE: api/TodoItems/5
+        // [HttpDelete("{id}")]
+        // public async Task<IActionResult> DeleteProject(long id)
+        // {
+        //     var project = await _context.Projects.FindAsync(id);
+        //     if (project == null)
+        //     {
+        //         return NotFound();
+        //     }
 
-            _context.Projects.Remove(project);
-            await _context.SaveChangesAsync();
+        //     _context.Projects.Remove(project);
+        //     await _context.SaveChangesAsync();
 
-            return NoContent();
-        }
+        //     return NoContent();
+        // }
 
-        private bool TodoItemExists(long id)
-        {
-            return _context.Projects.Any(e => e.Id == id);
-        }
+        // private bool TodoItemExists(long id)
+        // {
+        //     return _context.Projects.Any(e => e.Id == id);
+        // }
     }
 }
