@@ -1,3 +1,4 @@
 docker run --name dotnet-api -e POSTGRES_PASSWORD=password -d -p 5432:5432 postgres:alpine (on windows)
 docker exec -it <name> bash (Acceses container with bash)
 psql -U postgres (Accesses postgres database as postgres user)
+dotnet-ef migrations add InitialMigration
