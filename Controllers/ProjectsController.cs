@@ -30,25 +30,26 @@ namespace basic_crud_api.Controllers
             return projects;
         }
 
-        // // GET: api/TodoItems/5
-        // //If no item matches the requested ID, the method returns a 404 status NotFound error code.
-        // //Otherwise, the method returns 200 with a JSON response body. Returning item results in an HTTP 200 response.
-        // [HttpGet("{id}")]
-        // public async Task<ActionResult<Project>> GetProject(long id)
-        // {
-        //     var project = await _context.Projects.FindAsync(id);
+        // GET: api/TodoItems/5
+        //If no item matches the requested ID, the method returns a 404 status NotFound error code.
+        //Otherwise, the method returns 200 with a JSON response body. Returning item results in an HTTP 200 response.
+        [HttpGet("{id}")]
+        public ActionResult<Project> GetProject(int id)
+        {
+            // var project = await _context.Projects.FindAsync(id);
+            var project = repository.GetById(id, project => project.Id == id);
 
-        //     if (project == null)
-        //     {
-        //         return NotFound();
-        //     }
+            if (project == null)
+            {
+                return NotFound();
+            }
 
-        //     return project;
-        // }
+            return project;
+        }
 
-        // // PUT: api/TodoItems/5
-        // // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        // // This requires the whole item to be sent in the request
+        // PUT: api/TodoItems/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // This requires the whole item to be sent in the request
         // [HttpPut("{id}")]
         // public async Task<IActionResult> PutProject(long id, Project project)
         // {
@@ -78,18 +79,18 @@ namespace basic_crud_api.Controllers
         //     return NoContent();
         // }
 
-        // // POST: api/TodoItems
-        // // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        // [HttpPost]
-        // public async Task<ActionResult<Project>> PostProject(Project project)
-        // {
-        //     _context.Projects.Add(project);
-        //     await _context.SaveChangesAsync();
+        // POST: api/TodoItems
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        public ActionResult<Project> PostProject(Project project)
+        {
+            // _context.Projects.Add(project);
+            // await _context.SaveChangesAsync();
+            repository.Post(project);
+            return CreatedAtAction(nameof(GetProject), new { id = project.Id }, project);
+        }
 
-        //     return CreatedAtAction(nameof(GetProject), new { id = project.Id }, project);
-        // }
-
-        // // DELETE: api/TodoItems/5
+        // DELETE: api/TodoItems/5
         // [HttpDelete("{id}")]
         // public async Task<IActionResult> DeleteProject(long id)
         // {

@@ -18,7 +18,7 @@ namespace TodoApi.Middleware
         public async Task InvokeAsync(HttpContext context)
         {
             //code
-            Console.WriteLine("MyMiddleware called");
+            // Console.WriteLine("MyMiddleware called");
 
             // Calls the next middleware in the pipeline
             await _next(context);
