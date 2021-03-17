@@ -45,14 +45,12 @@ namespace TodoApi.Repositories
 
             try
             {
-                repository.SaveChanges();
+                return repository.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
-               throw;
+                throw;
             }
-
-            return 0;
         }
 
         public int Delete(int id)

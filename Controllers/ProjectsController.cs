@@ -50,34 +50,24 @@ namespace basic_crud_api.Controllers
         // PUT: api/TodoItems/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         // This requires the whole item to be sent in the request
-        // [HttpPut("{id}")]
-        // public async Task<IActionResult> PutProject(long id, Project project)
-        // {
-        //     if (id != project.Id)
-        //     {
-        //         return BadRequest();
-        //     }
+        [HttpPut("{id}")]
+        public IActionResult PutProject(int id, Project project)
+        {
+            if (id != project.Id)
+            {
+                return BadRequest();
+            }
 
-        //     _context.Entry(project).State = EntityState.Modified;
+            // _context.Entry(project).State = EntityState.Modified;
+            int response = repository.Put(id, project);
 
-        //     try
-        //     {
-        //         await _context.SaveChangesAsync();
-        //     }
-        //     catch (DbUpdateConcurrencyException)
-        //     {
-        //         if (!TodoItemExists(id))
-        //         {
-        //             return NotFound();
-        //         }
-        //         else
-        //         {
-        //             throw;
-        //         }
-        //     }
+            if (response < 1)
+            {
+                return NotFound();
+            }
 
-        //     return NoContent();
-        // }
+            return NoContent();
+        }
 
         // POST: api/TodoItems
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -91,24 +81,29 @@ namespace basic_crud_api.Controllers
         }
 
         // DELETE: api/TodoItems/5
-        // [HttpDelete("{id}")]
-        // public async Task<IActionResult> DeleteProject(long id)
-        // {
-        //     var project = await _context.Projects.FindAsync(id);
-        //     if (project == null)
-        //     {
-        //         return NotFound();
-        //     }
+        [HttpDelete("{id}")]
+        public IActionResult DeleteProject(int id)
+        {
+            var project = repository.GetById(id, project => project.Id == id);
 
-        //     _context.Projects.Remove(project);
-        //     await _context.SaveChangesAsync();
+            if (project == null)
+            {
+                return NotFound();
+            }
 
-        //     return NoContent();
-        // }
+            repository.Delete(id);
+            return NoContent();
+        }
 
-        // private bool TodoItemExists(long id)
-        // {
-        //     return _context.Projects.Any(e => e.Id == id);
-        // }
+        private bool TodoItemExists(int id)
+        {
+            var project = repository.GetById(id, project => project.Id == id);
+
+            if (project != null)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

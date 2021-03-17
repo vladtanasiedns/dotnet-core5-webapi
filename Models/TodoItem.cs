@@ -16,11 +16,11 @@ namespace TodoApi.Models
         public bool IsComplete { get; set; }
         // Foreign key pointing to the project this TodoItem belongs to
         [Column("projectid")]
-        [ForeignKey("projectId")]
+        [ForeignKey("projectid")]
         public int ProjectId { get; set; }
         // Navigation propery referencing the project model
-        
-        [NotMapped]
-        public Project Project { get; set; }
+        // [Column("projectid")]
+        // [ForeignKey("projectid")]
+        public virtual Project Project { get; set; }
     }
 }
